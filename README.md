@@ -1,23 +1,16 @@
-# flutter-moviedb-app
+# myapp
 
-Instructions to running flutter-moviedb-app in local machine :
+A new Flutter project.
 
-1. Clone this repository by running this command in terminal
-git clone https:www.https://github.com/hengki01/flutter-moviedb-app
+## Getting Started
 
->> Skip to Step 4 if your machine is ready for running flutter app.
+This project is a starting point for a Flutter application.
 
-2. Set Up Flutter
-Follow this instructions: https://flutter.dev/docs/get-started/install
+A few resources to get you started if this is your first Flutter project:
 
-3. Setup Emulator / Devices to run Flutter app.
-Follow this instructions: https://flutter.dev/docs/get-started/test-drive?tab=androidstudio
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-4. Open & run this command via terminal in directory: /flutter-moviedb-app
-flutter run
-
-Note:
-flutter-moviedb-app is prepared using android-based devices, has not been tested using iOS-based devices.
-
-flutter-moviedb-app web build >> https://flutter-web-de48f.firebaseapp.com/
-This web build is not specifically developed for web layout, then resize your browser viewport to 5-inch screen size.
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
