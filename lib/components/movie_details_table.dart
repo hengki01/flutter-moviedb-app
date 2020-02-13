@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:FlutterMovieDBApp/components/movie_details_category_chips.dart';
+import 'package:FlutterMovieDBApp/components/movie_details_table_hyperlink.dart';
+import 'package:intl/intl.dart';
+import 'package:FlutterMovieDBApp/utils/time_converter.dart';
 
 class DetailTable extends StatelessWidget {
   final String releaseDate;
@@ -8,6 +12,7 @@ class DetailTable extends StatelessWidget {
   final double popularity;
   final List<dynamic> productionCompanies;
   final List<dynamic> spokenLanguages;
+  final currencyFormatter = NumberFormat("#,##0.00", "en_US");
 
   DetailTable(
     this.releaseDate,
@@ -19,9 +24,10 @@ class DetailTable extends StatelessWidget {
     this.spokenLanguages,
   );
 
+  //possible refactor: table-row
   Widget build(BuildContext context) {
     return Table(
-      border: TableBorder.all(color: Colors.black),
+      border: TableBorder.all(color: Color.fromRGBO(255, 0, 0, 0.0)),
       children: [
         TableRow(children: [
           Text('Release Date'),
@@ -29,28 +35,24 @@ class DetailTable extends StatelessWidget {
         ]),
         TableRow(children: [
           Text('Runtime'),
-          Text(runtime.toString() + " minutes"),
+          Text(timeConverter(runtime)),
         ]),
         TableRow(children: [
           Text('Revenue'),
-          Text(revenue.toString()),
+          Text('USD ${currencyFormatter.format(revenue)}'),
         ]),
         TableRow(children: [
           Text('Movie Homepage'),
-          Text(homepage),
+          Hyperlink(homepage)
         ]),
         TableRow(children: [
           Text('Popularity'),
-          Text(popularity.toString()),
-        ]),
-        TableRow(children: [
-          Text('Production Companies'),
-          Text(productionCompanies.toString()),
+          Text(popularity.toInt().toString()),
         ]),
         TableRow(children: [
           Text('Spoken Languages'),
-          Text(spokenLanguages.toString()),
-        ]),
+          CategoryChips(spokenLanguages),
+        ],),
       ],
     );
   }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/components/movie_details_backdrop_image.dart';
-import 'package:myapp/components/movie_details_poster.dart';
-import 'package:myapp/components/movie_details_star_rating_container.dart';
+import 'package:FlutterMovieDBApp/components/movie_details_backdrop_image.dart';
+import 'package:FlutterMovieDBApp/components/movie_details_poster.dart';
+import 'package:FlutterMovieDBApp/components/movie_details_star_rating_container.dart';
+import 'package:FlutterMovieDBApp/components/movie_details_category_chips.dart';
 
 class MovieDetailHeader extends StatelessWidget {
   final String backdropPath;
@@ -22,23 +23,6 @@ class MovieDetailHeader extends StatelessWidget {
     this.title,
   );
 
-  // 
-  List<Widget> _buildCategoryChips(TextTheme textTheme) {
-    return genres.map((category) {
-      return Padding(
-        padding: const EdgeInsets.only(right: 5.0),
-        child: Chip(
-          label: Text(
-            category["name"],
-            style: TextStyle(color: Colors.white),
-          ),
-          labelStyle: textTheme.caption,
-          backgroundColor: Colors.black,
-        ),
-      );
-    }).toList();
-  }
-
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
@@ -55,9 +39,7 @@ class MovieDetailHeader extends StatelessWidget {
         SizedBox(height: 8.0),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: Row(
-            children: _buildCategoryChips(textTheme)
-          )
+          child: CategoryChips(genres)
         )
       ],
     );

@@ -23,26 +23,39 @@ class _DatePickerState extends State<DatePicker> {
       setState(() {
         if(cond == 'start') {
           startDate = picked;
+          widget.setDate('startDate', startDate);
         } else if (cond == 'end') {
           endDate = picked;
+          widget.setDate('endDate', endDate);
         }
       });
   }
 
+  //possible refactor: buttontheme
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Text("Start from :  "),
-        RaisedButton(
-          onPressed: () => _selectDate(context, 'start'),
-          child: Text("${startDate.toLocal()}".split(' ')[0]),
+        Text("Release Date :  "),
+        ButtonTheme(
+          minWidth: 50.0,
+          height: 22.0,
+          buttonColor: Colors.white,
+          child: RaisedButton(
+            onPressed: () => _selectDate(context, 'start'),
+            child: Text("${startDate.toLocal()}".split(' ')[0]),
+          ),
         ),
-        Text(" To : "),
-        RaisedButton(
-          onPressed: () => _selectDate(context, 'end'),
-          child: Text("${endDate.toLocal()}".split(' ')[0]),
+        Text("    To : "),
+        ButtonTheme(
+          minWidth: 50.0,
+          height: 22.0,
+          buttonColor: Colors.white,
+          child: RaisedButton(
+            onPressed: () => _selectDate(context, 'end'),
+            child: Text("${endDate.toLocal()}".split(' ')[0]),
+          ),
         ),
       ],
     );

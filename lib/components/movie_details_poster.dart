@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:FlutterMovieDBApp/constants/constants.dart';
 
 class Poster extends StatelessWidget {
   static const POSTER_RATIO = 0.7;
@@ -18,7 +19,7 @@ class Poster extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(10.0),
       child: Image.network(
-        "http://image.tmdb.org/t/p/w500" + posterPath,
+        Constants.POSTER_IMG_URL + posterPath,
         fit: BoxFit.cover,
         width: width,
         height: height,

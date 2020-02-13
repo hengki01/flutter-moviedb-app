@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:myapp/screens/movies_list_screen.dart';
-import 'package:myapp/redux/store.dart';
+import 'package:FlutterMovieDBApp/screens/movies_list_screen.dart';
+import 'package:FlutterMovieDBApp/redux/store.dart';
+import 'package:FlutterMovieDBApp/screens/favourites_list_screen.dart';
+import 'package:FlutterMovieDBApp/screens/search_list_screen.dart';
+import 'package:FlutterMovieDBApp/constants/constants.dart';
 
 void main() => runApp(App());
 
@@ -12,7 +15,7 @@ class App extends StatelessWidget {
     return StoreProvider(
       store: store,
       child: MaterialApp(
-        title: "Flutter MovieDB App - Hengki",
+        title: Constants.APP_NAME,
         theme: ThemeData(
           primarySwatch: Colors.blue,
           accentColor: const Color(0xFFFF5959),
@@ -35,8 +38,8 @@ class _AppNavigationState extends State<AppNavigation> {
 
   final List<Widget> _widgetOptions = <Widget>[
     MoviesScreen(),
-    Text('search'),
-    Text('favourite'),
+    SearchListScreen(),
+    FavouritesListScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -45,6 +48,7 @@ class _AppNavigationState extends State<AppNavigation> {
     });
   }
 
+  //possible refactor: bottomnavigationitem
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,15 +58,15 @@ class _AppNavigationState extends State<AppNavigation> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.list, color: Colors.black),
             title: Text('Discover'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: Icon(Icons.search, color: Colors.black),
             title: Text('Search'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.star),
+            icon: Icon(Icons.favorite, color: Colors.pink),
             title: Text('Favourites'),
           ),
         ],

@@ -1,20 +1,23 @@
-import 'package:myapp/models/movie/movie.dart';
+import 'package:FlutterMovieDBApp/models/movie/movie.dart';
 
 class MovieState {
   ListMoviesState list;
   MovieDetailsState details;
   ListGenresState genres;
+  SearchListMoviesState search;
 
   MovieState({
     this.list,
     this.details,
     this.genres,
+    this.search
   });
 
   factory MovieState.initial() => MovieState(
     list: ListMoviesState.initial(),
     details: MovieDetailsState.initial(),
     genres: ListGenresState.initial(),
+    search: SearchListMoviesState.initial(),
   );
 }
 
@@ -69,5 +72,23 @@ class ListGenresState {
     error: null,
     loading: false,
     data: null,
+  );
+}
+
+class SearchListMoviesState {
+  dynamic error;
+  bool loading;
+  List<Movie> data;
+
+  SearchListMoviesState({
+    this.error,
+    this.loading,
+    this.data,
+  });
+
+  factory SearchListMoviesState.initial() => SearchListMoviesState(
+    error: null,
+    loading: false,
+    data: [],
   );
 }

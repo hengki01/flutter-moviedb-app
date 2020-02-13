@@ -10,9 +10,10 @@ class StarRating extends StatelessWidget {
     var stars = <Widget>[];
 
     for (var i = 1; i <= 10; i++) {
+      var color = i<=voteAverage ? Colors.orange : Colors.grey[400];
       var star = Icon(
         Icons.star,
-        color: Colors.orange,
+        color: color,
         size: 15
       );
       stars.add(star);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/components/movie_details_star_rating.dart';
+import 'package:FlutterMovieDBApp/components/movie_details_star_rating.dart';
 
 class StarRatingContainer extends StatelessWidget {
   final double voteAverage;
