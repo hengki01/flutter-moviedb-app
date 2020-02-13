@@ -4,7 +4,7 @@ Instructions to running flutter-moviedb-app in local machine :
 
 1. Clone this repository by running this command in terminal
    ```
-   git clone https:www.https://github.com/hengki01/flutter-moviedb-app
+   git clone https:www.https://github.com/hengki01/flutter-moviedb-app.git
    ```
 
 ##### Skip to Step 4 if your machine is ready for running flutter app.
