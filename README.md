@@ -7,7 +7,7 @@ Instructions to running flutter-moviedb-app in local machine :
    git clone https:www.https://github.com/hengki01/flutter-moviedb-app
    ```
 
-##Skip to Step 4 if your machine is ready for running flutter app.
+## Skip to Step 4 if your machine is ready for running flutter app.
 
 2. Set Up Flutter
 Follow this instructions: https://flutter.dev/docs/get-started/install
