@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/models/movie/movie.dart';
+import 'package:FlutterMovieDBApp/models/movie/movie.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:myapp/models/app_state.dart';
-import 'package:myapp/models/movie/movie_state.dart';
-import 'package:myapp/components/movie_details_header.dart';
-import 'package:myapp/components/movie_details_overview.dart';
-import 'package:myapp/components/movie_details_table.dart';
+import 'package:FlutterMovieDBApp/models/app_state.dart';
+import 'package:FlutterMovieDBApp/models/movie/movie_state.dart';
+import 'package:FlutterMovieDBApp/components/movie_details_header.dart';
+import 'package:FlutterMovieDBApp/components/movie_details_overview.dart';
+import 'package:FlutterMovieDBApp/components/movie_details_logo_scroller.dart';
+import 'package:FlutterMovieDBApp/utils/logo_url_extractor.dart';
+import 'package:FlutterMovieDBApp/components/movie_details_table.dart';
 
 class MovieDetailsScreen extends StatelessWidget {
 
@@ -40,32 +42,31 @@ class MovieDetailsScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(20.0),
                   child: Overview(data.overview),
                 ),
-                // PhotoScroller(movie.photoUrls),
-                SizedBox(height: 20.0),
-                // ActorScroller(movie.actors),
-                SizedBox(height: 50.0),
-                DetailTable(
-                  data.releaseDate,
-                  data.runtime,
-                  data.revenue,
-                  data.homepage,
-                  data.popularity,
-                  data.productionCompanies,
-                  data.spokenLanguages
-                ),
+                LogoScroller(logoUrlsExtractor(data.productionCompanies)),
+                SizedBox(height: 10.0),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  child: DetailTable(
+                    data.releaseDate,
+                    data.runtime,
+                    data.revenue,
+                    data.homepage,
+                    data.popularity,
+                    data.productionCompanies,
+                    data.spokenLanguages
+                  ),
+                )
               ],
             ),
           );
         }
 
         return Scaffold(
-          backgroundColor: Colors.grey[300],
+          backgroundColor: Colors.grey[180],
           extendBodyBehindAppBar: true,
           appBar: AppBar(
-            backgroundColor: Color(0x44000000),
+            backgroundColor: Color(0x00000000),
             elevation: 0,
-            centerTitle: true,
-            title: Text("Movie Details"),
           ),
           body: Scrollbar(child: body),
         );

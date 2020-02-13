@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:redux_api_middleware/redux_api_middleware.dart';
-import 'package:myapp/redux/actions/movie_actions.dart';
-import 'package:myapp/models/movie/movie.dart';
-import 'package:myapp/models/movie/movie_state.dart';
+import 'package:FlutterMovieDBApp/redux/actions/movie_actions.dart';
+import 'package:FlutterMovieDBApp/models/movie/movie.dart';
+import 'package:FlutterMovieDBApp/models/movie/movie_state.dart';
 
 MovieState movieReducer(MovieState state, FSA action) {
   MovieState newState = state;
@@ -60,6 +60,24 @@ MovieState movieReducer(MovieState state, FSA action) {
       newState.genres.error = action.payload;
       newState.genres.loading = false;
       newState.genres.data = null;
+      return newState;
+
+    case SEARCH_MOVIES_REQUEST:
+      newState.search.error = null;
+      newState.search.loading = true;
+      newState.search.data = null;
+      return newState;
+
+    case SEARCH_MOVIES_SUCCESS:
+      newState.search.error = null;
+      newState.search.loading = false;
+      newState.search.data = moviesFromJSONStr(action.payload);
+      return newState;
+
+    case SEARCH_MOVIES_FAILURE:
+      newState.search.error = action.payload;
+      newState.search.loading = false;
+      newState.search.data = null;
       return newState;
 
     default:

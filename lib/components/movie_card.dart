@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/components/movie_card_genres_list.dart';
+import 'package:FlutterMovieDBApp/components/movie_card_genres_list.dart';
+import 'package:FlutterMovieDBApp/constants/constants.dart';
 
 // Possible Refactor: using InheritedWidget ??
 
@@ -27,7 +28,7 @@ class MovieCard extends StatelessWidget {
         children: <Widget>[
           // possible refactor: reuse movie_details_poster widget
           Image.network(
-            "http://image.tmdb.org/t/p/w500" + posterPath,
+            Constants.POSTER_IMG_URL + posterPath,
             width: 130,
             fit: BoxFit.fitHeight,
             alignment: Alignment.centerLeft,

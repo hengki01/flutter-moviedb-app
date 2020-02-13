@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redux/redux.dart';
-import 'package:myapp/routes.dart';
-import 'package:myapp/models/app_state.dart';
-import 'package:myapp/models/movie/movie.dart';
-import 'package:myapp/models/movie/movie_state.dart';
-import 'package:myapp/redux/actions/movie_actions.dart';
-import 'package:myapp/screens/movie_details_screen.dart';
-import 'package:myapp/components/home_filter_dropdown.dart';
-import 'package:myapp/components/home_date_picker.dart';
-import 'package:myapp/utils/movie_sorting.dart';
-import 'package:myapp/components/movie_card.dart';
+import 'package:redux/redux.dart'; 
+import 'package:FlutterMovieDBApp/routes.dart';
+import 'package:FlutterMovieDBApp/models/app_state.dart';
+import 'package:FlutterMovieDBApp/models/movie/movie.dart';
+import 'package:FlutterMovieDBApp/models/movie/movie_state.dart';
+import 'package:FlutterMovieDBApp/redux/actions/movie_actions.dart';
+import 'package:FlutterMovieDBApp/screens/movie_details_screen.dart';
+import 'package:FlutterMovieDBApp/components/home_filter_dropdown.dart';
+import 'package:FlutterMovieDBApp/components/home_date_picker.dart';
+import 'package:FlutterMovieDBApp/utils/movie_sorting.dart';
+import 'package:FlutterMovieDBApp/utils/movie_date_filter.dart';
+import 'package:FlutterMovieDBApp/utils/date_checker.dart';
+import 'package:FlutterMovieDBApp/components/movie_card.dart';
 
 class MoviesScreen extends StatefulWidget {
 
@@ -29,11 +31,16 @@ class _MoviesScreenState extends State<MoviesScreen> {
     });
   }
 
-  setDate(startDate, endDate) {
-    setState(() {
-      startDate = startDate;
-      endDate = endDate;
-    });
+  setDate(type, date) {
+    if(type == 'startDate') {
+      setState(() {
+        startDate = date;
+      });
+    } else if(type == 'endDate') {
+      setState(() {
+        endDate = date;
+      });
+    }
   }
 
   void handleInitialBuild(MoviesScreenProps props) {
@@ -47,7 +54,8 @@ class _MoviesScreenState extends State<MoviesScreen> {
       converter: (store) => mapStateToProps(store),
       onInitialBuild: (props) => this.handleInitialBuild(props),
       builder: (context, props) {
-        List<Movie> data = props.listResponse.data;
+        List<Movie> sortedData = movieSorting(props.listResponse.data, sortBy);
+        List<Movie> data = dateFilter(sortedData, startDate, endDate);
         List<Genre> listGenres = props.listGenres.data;
         bool listLoading = props.listResponse.loading;
         bool genresLoading = props.listResponse.loading;
@@ -58,7 +66,12 @@ class _MoviesScreenState extends State<MoviesScreen> {
           body = Center(
             child: CircularProgressIndicator(),
           );
-        } else {
+        } else if (data.length == 0) {
+          body = Center(
+            child: Text('No Movies Found for date range')
+          );
+        } else  {
+          print('=============');
           body = ListView.separated(
             padding: const EdgeInsets.all(5.0),
             itemCount: data.length,
@@ -96,8 +109,12 @@ class _MoviesScreenState extends State<MoviesScreen> {
             body: Scrollbar(
               child: Column(
                 children: <Widget>[
-                  DropDownButton(setSortBy: setSortBy),
+                  SizedBox(
+                    height: 40,
+                    child: DropDownButton(setSortBy: setSortBy),
+                  ),
                   DatePicker(setDate: setDate),
+                  Text(dateChecker(startDate, endDate)),
                   Expanded(child: body)
                 ],
               )

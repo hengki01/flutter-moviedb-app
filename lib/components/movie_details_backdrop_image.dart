@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:FlutterMovieDBApp/constants/constants.dart';
 
 class BackdropImage extends StatelessWidget {
   final String backdropPath;
@@ -12,7 +13,7 @@ class BackdropImage extends StatelessWidget {
     return ClipPath(
       clipper: ArcClipper(),
       child: Image.network(
-        "http://image.tmdb.org/t/p/w342/$backdropPath",
+        Constants.BACKDROP_IMG_URL + backdropPath,
         width: screenWidth,
         height: 270.0,
         fit: BoxFit.cover,

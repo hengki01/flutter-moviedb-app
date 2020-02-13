@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/utils/genre_match.dart';
+import 'package:FlutterMovieDBApp/utils/genre_match.dart';
 
 class GenresList extends StatelessWidget {
   final List<dynamic> genreIDs;
