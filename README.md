@@ -1,6 +1,7 @@
 # flutter-moviedb-app
 
 #### App Demo Link: https://storage.cloud.google.com/flutter-moviedbapp.hengki.web.id/screen-record.gif
+![App Demo](https://storage.cloud.google.com/flutter-moviedbapp.hengki.web.id/screen-record.gif)
 
 Instructions to running flutter-moviedb-app in local machine :
 
