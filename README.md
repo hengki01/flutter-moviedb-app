@@ -22,9 +22,5 @@ Follow this instructions: https://flutter.dev/docs/get-started/test-drive?tab=an
    ```
    flutter run
    ```
-
-Note:
-flutter-moviedb-app is prepared using android-based devices, has not been tested using iOS-based devices.
-
-flutter-moviedb-app web build >> https://flutter-web-de48f.firebaseapp.com/
-This web build is not specifically developed for web layout, then resize your browser viewport to 5-inch screen size.
+   
+   
